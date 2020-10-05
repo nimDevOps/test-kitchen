@@ -152,10 +152,11 @@ module Kitchen
       windows_os? ? path.tr("/", '\\') : path.tr('\\', "/")
     end
 
-    # @return [TrueClass,FalseClass] true if `:os_type` is `"unix"` (or
-    #   unset, for backwards compatibility)
+    # @return [TrueClass,FalseClass] true if `:os_type` is `"unix"` or `"linux"`
+    # (or  unset, for backwards compatibility)
     def unix_os?
-      ["unix", nil].include?(instance.platform.os_type)
+      debug "unix_os? os_type=#{instance.platform.os_type}"
+      ["unix", "linux", nil].include?(instance.platform.os_type)
     end
 
     # Performs whatever tests that may be required to ensure that this plugin
